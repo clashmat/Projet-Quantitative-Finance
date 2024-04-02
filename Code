@@ -5,62 +5,69 @@ import matplotlib.pyplot as plt
 "q1 : give the Euler Scheme of (1) to deduce approximated trajectories of r. provide the python code and a graphic"
 
 #Random assumption on the parameters
-# r0 = 3/100
-# a = 15/100
-# b = 5/100
-# gamma = 5/100
+r0 = 3/100
+a = 15/100
+b = 5/100
+gamma = 5/100
 
 
-# n=20 #we don't do too much step to have a visible graph
-# N=4 #number of trajectories
-# T=3 #time horizon
-# step = T/n
-# dates = np.linspace (0,T,n+1)
+n=20 #we don't do too much step to have a visible graph
+N=4 #number of trajectories
+T=3 #time horizon
+step = T/n
+dates = np.linspace (0,T,n+1)
 
 
-# R = r0 * np.ones((n+1, N)) #we create a matrix (n+1,N) full of the value r0
+R = r0 * np.ones((n+1, N)) #we create a matrix (n+1,N) full of the value r0
 
 
-# for j in range (N):
-#     for i in range (1, n+1) :
-#         R[i,j] = a * ( b - R[i-1, j]) *step + gamma * np.sqrt(step) * np.random.randn() #we apply the euler scheme
+for j in range (N):
+    for i in range (1, n+1) :
+        R[i,j] = a * ( b - R[i-1, j]) *step + gamma * np.sqrt(step) * np.random.randn() + R[i-1,j] #we apply the euler scheme
     
 
-# plt.plot(dates,R) #we plot the trajectories in function of the time
+plt.plot(dates,R) #we plot the trajectories in function of the time
+plt.xlabel('Time')
+plt.ylabel('Risk-free returns')
+plt.title('Evolution Of The Risk-Free Returns Over Time')
+plt.show()
 
 "q2"
 
 #Random assumption on the parameters
-# r0 = 3/100
-# a = 15/100
-# b = 5/100
-# gamma = 5/100
+r0 = 3/100
+a = 15/100
+b = 5/100
+gamma = 5/100
 
 
-# n=100
-# N=10 #number of trajectories
-# T=3 #time horizon
-# step = T/n
-# dates = np.linspace (0,T,n+1)
-# S0zero = 1
+n=10
+N=10 #number of trajectories
+T=3 #time horizon
+step = T/n
+dates = np.linspace (0,T,n+1)
+S0zero = 1
 
-# R = r0 * np.ones((n+1, N)) #we create a matrix (n+1,N) full of the value r0
+R = r0 * np.ones((n+1, N)) #we create a matrix (n+1,N) full of the value r0
 
-# Szero = S0zero * np.ones ((n+1, N)) #we create a matrix (n+1,N) full of the value S0zero
+Szero = S0zero * np.ones ((n+1, N)) #we create a matrix (n+1,N) full of the value S0zero
 
-# for j in range (N):
-#       for i in range (1, n+1) :
-#           R[i,j] = a * ( b - R[i-1, j]) *step + gamma * np.sqrt(step) * np.random.randn()#we apply the euler scheme of r
-#           Szero[i,j] = R[i-1,j] * Szero[i-1,j] * step + Szero[i-1,j] #we apply the euler scheme of Szero
+for j in range (N):
+      for i in range (1, n+1) :
+          R[i,j] = a * ( b - R[i-1, j]) *step + gamma * np.sqrt(step) * np.random.randn() + R[i-1,j] #we apply the euler scheme of r
+          Szero[i,j] = R[i-1,j] * Szero[i-1,j] * step + Szero[i-1,j] #we apply the euler scheme of Szero
 
               
-# plt.plot(dates,Szero)
-
+plt.plot(dates,Szero)
+plt.xlabel('Time')
+plt.ylabel('Price')
+plt.title('Evolution Of The Risk-Free Asset Price Over Time')
+plt.show()
 # "Explanation :The return of the risk free asset has a small volatility this reflect well the reality."  
 
-"q3"
+# "q3"
 
-#Random assumption on the parameters
+# #Random assumption on the parameters
 r0 = 4/100
 a = 20/100
 b = 6/100
@@ -94,116 +101,124 @@ for j in range (N):
           ST[i,j] = sigma(step*(i-1),ST[i-1,j]) * ST[i-1,j] * np.sqrt(step) * np.random.randn() + ST[i-1,j] 
          
 plt.plot(dates,ST)
+plt.xlabel('Time')
+plt.ylabel('Discounted Price')
+plt.title('Evolution Of The Risky Asset Discounted Price Over Time')
+plt.show()
 
-"Q4"
-#Random assumption on the parameters
-# r0 = 3/100
-# a = 15/100
-# b = 5/100
-# gamma = 5/100
+# "Q4"
+# #Random assumption on the parameters
+r0 = 3/100
+a = 15/100
+b = 5/100
+gamma = 5/100
 
 
-# n=100
-# N=10 #number of trajectories
-# T=3 #time horizon
-# step = T/n
-# dates = np.linspace (0,T,n+1)
-# S0 = 10
-# S0zero = 1
+n=100
+N=4 #number of trajectories
+T=3 #time horizon
+step = T/n
+dates = np.linspace (0,T,n+1)
+S0 = 10
+S0zero = 1
 
-# ST = S0* np.ones ((n+1, N)) #we create a matrix (n+1,N) full of the value S0
-# S = S0* np.ones ((n+1, N)) #we create a matrix (n+1,N) full of the value S0
-# R = r0 * np.ones((n+1, N)) #we create a matrix (n+1,N) full of the value r0
-# Szero = S0zero * np.ones ((n+1, N)) #we create a matrix (n+1,N) full of the value S0zero
+ST = S0* np.ones ((n+1, N)) #we create a matrix (n+1,N) full of the value S0
+S = S0* np.ones ((n+1, N)) #we create a matrix (n+1,N) full of the value S0
+R = r0 * np.ones((n+1, N)) #we create a matrix (n+1,N) full of the value r0
+Szero = S0zero * np.ones ((n+1, N)) #we create a matrix (n+1,N) full of the value S0zero
 
-# #creation of 2 functions f and g belonging to [0,1/2]
-# def f (t) :
-#     return (np.sin(t)**2) / 2
+#creation of 2 functions f and g belonging to [0,1/2]
+def f(t) :
+    return (np.sin(t)**2) / 2
 
-# def g (x) :
-#     return 1/(2*(1+x**2))
+def g (x) :
+    return 1/(2*(1+x**2))
 
-# def sigma (t, x, alpha = 15/100):
-#     return alpha *( 1  + f(t) + g(x))
+def sigma (t, x, alpha = 15/100):
+    return alpha *( 1  + f(t) + g(x))
 
-# for j in range (N):
-#       for i in range (1, n+1) :
-#           #Euler scheme of ST
-#           ST[i,j] = sigma(step*(i-1),ST[i-1,j]) * ST[i-1,j] * np.sqrt(step) * np.random.randn() + ST[i-1,j]
+for j in range (N):
+      for i in range (1, n+1) :
+          #Euler scheme of ST
+          ST[i,j] = sigma(step*(i-1),ST[i-1,j]) * ST[i-1,j] * np.sqrt(step) * np.random.randn() + ST[i-1,j]
           
-#           #we apply the euler scheme of r
-#           R[i,j] = a * ( b - R[i-1, j]) *step + gamma * np.sqrt(step) * np.random.randn()
+          #we apply the euler scheme of r
+          R[i,j] = a * ( b - R[i-1, j]) *step + gamma * np.sqrt(step) * np.random.randn() + R[i-1,j] 
           
-#           #we apply the euler scheme of Szero 
-#           Szero[i,j] = R[i-1,j] * Szero[i-1,j] * step + Szero[i-1,j]
+          #we apply the euler scheme of Szero 
+          Szero[i,j] = R[i-1,j] * Szero[i-1,j] * step + Szero[i-1,j]
           
-#           #Trajectories of S
-#           S[i,j] = ST[i,j] * Szero[i,j]
+          #Trajectories of S
+          S[i,j] = ST[i,j] * Szero[i,j]
 
 
-# plt.plot(dates,S)
+plt.plot(dates,S)
+plt.plot(dates, ST, linestyle='--') 
+plt.xlabel('Time')
+plt.ylabel('Price')
+plt.title('Evolution Of The Risky Asset Price Over Time')
+plt.show()
+
+# "Q5 : voir fin cours / question sur continous time or discrete ??"
 
 
-"Q5 : voir fin cours / question sur continous time or discrete ??"
+# "Q6"
+# #Random assumption on the parameters
+r0 = 3/100 ; a = 15/100 ; b = 5/100 ; gamma = 5/100
 
+n=100 ; N=1 #number of trajectories
+T=3 #time horizon
+step = T/n
+dates = np.linspace (0,T,n+1)
 
-"Q6"
-#Random assumption on the parameters
-# r0 = 3/100 ; a = 15/100 ; b = 5/100 ; gamma = 5/100
+S0 = 10 ; S0zero = 1
 
-# n=100 ; N=1 #number of trajectories
-# T=3 #time horizon
-# step = T/n
-# dates = np.linspace (0,T,n+1)
+ST = S0* np.ones ((n+1, N)) #we create a matrix (n+1,N) full of the value S0
+S = S0* np.ones ((n+1, N)) #we create a matrix (n+1,N) full of the value S0
+R = r0 * np.ones((n+1, N)) #we create a matrix (n+1,N) full of the value r0
+Szero = S0zero * np.ones ((n+1, N)) #we create a matrix (n+1,N) full of the value S0zero
 
-# S0 = 10 ; S0zero = 1
+#Creation of the list to sock the payoff
+G = [] 
+H = []
+K = 15
+K2 = 15
 
-# ST = S0* np.ones ((n+1, N)) #we create a matrix (n+1,N) full of the value S0
-# S = S0* np.ones ((n+1, N)) #we create a matrix (n+1,N) full of the value S0
-# R = r0 * np.ones((n+1, N)) #we create a matrix (n+1,N) full of the value r0
-# Szero = S0zero * np.ones ((n+1, N)) #we create a matrix (n+1,N) full of the value S0zero
+def xplus (x) : 
+    return max(x,0)
+def f (t) :
+    return (np.sin(t))**2 / 2
+def g (x) :
+    return 1/(2*(1+x**2))
+def sigma (t, x, alpha = 15/100):
+    return alpha *( 1  + f(t) + g(x))
 
-# #Creation of the list to sock the payoff
-# G = [] 
-# H = []
-# K = 15
-# K2 = 15
-
-# def xplus (x) : 
-#     return max(x,0)
-# def f (t) :
-#     return (np.sin(t))**2 / 2
-# def g (x) :
-#     return 1/(2*(1+x**2))
-# def sigma (t, x, alpha = 15/100):
-#     return alpha *( 1  + f(t) + g(x))
-
-# for j in range (N):
-#       integral_S = 0  # Initialize integral for Asian option
-#       for i in range (1, n+1) :
-#           #Euler scheme of ST
-#           ST[i,j] = sigma(step*(i-1),ST[i-1,j]) * ST[i-1,j] * np.sqrt(step) * np.random.randn() + ST[i-1,j]
-#           #Euler scheme of r
-#           R[i,j] = a * ( b - R[i-1, j]) *step + gamma * np.sqrt(step) * np.random.randn()
-#           #Euler scheme of Szero 
-#           Szero[i,j] = R[i-1,j] * Szero[i-1,j] * step + Szero[i-1,j]
-#           #Trajectories of S
-#           S[i,j] = ST[i,j] * Szero[i,j]
-#           integral_S += S[i,j] 
+for j in range (N):
+      integral_S = 0  # Initialize integral for Asian option
+      for i in range (1, n+1) :
+          #Euler scheme of ST
+          ST[i,j] = sigma(step*(i-1),ST[i-1,j]) * ST[i-1,j] * np.sqrt(step) * np.random.randn() + ST[i-1,j]
+          #Euler scheme of r
+          R[i,j] = a * ( b - R[i-1, j]) *step + gamma * np.sqrt(step) * np.random.randn() + R[i-1,j] 
+          #Euler scheme of Szero 
+          Szero[i,j] = R[i-1,j] * Szero[i-1,j] * step + Szero[i-1,j]
+          #Trajectories of S
+          S[i,j] = ST[i,j] * Szero[i,j]
+          integral_S += S[i,j] 
       
-#       G.append(xplus(K-S[n,j])) #we add to the list the max between 0 and the strike minus the last value in T
-#       H.append(xplus(K2-integral_S/n)) #we add to the list the max between 0 and the strike minus the average value of S
+      G.append(xplus(K-S[n,j])) #we add to the list the max between 0 and the strike minus the last value in T
+      H.append(xplus(K2-integral_S/n)) #we add to the list the max between 0 and the strike minus the average value of S
       
-# expectedG = np.mean((G) / Szero[n,N-1])
-# expectedH = np.mean((H) / Szero[n,N-1])
+expectedG = np.mean((G) / Szero[n,N-1])
+expectedH = np.mean((H) / Szero[n,N-1])
        
-# plt.plot(dates,S)
-# plt.xlabel('Time')
-# plt.ylabel('Stock Price')
-# plt.title('Stock Price Evolution')
-# plt.text(0.3, 0.1, f'Expected G: {expectedG}', transform=plt.gca().transAxes, ha='center')
-# plt.text(0.3, 0.15, f'Expected H: {expectedH}', transform=plt.gca().transAxes, ha='center')
-# plt.show()
+plt.plot(dates,S)
+plt.xlabel('Time')
+plt.ylabel('Stock Price')
+plt.title('Stock Price Evolution')
+plt.text(0.3, 0.1, f'Expected G: {expectedG}', transform=plt.gca().transAxes, ha='center')
+plt.text(0.3, 0.15, f'Expected H: {expectedH}', transform=plt.gca().transAxes, ha='center')
+plt.show()
 
 
 
