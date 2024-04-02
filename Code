@@ -63,7 +63,6 @@ plt.xlabel('Time')
 plt.ylabel('Price')
 plt.title('Evolution Of The Risk-Free Asset Price Over Time')
 plt.show()
-# "Explanation :The return of the risk free asset has a small volatility this reflect well the reality."  
 
 # "q3"
 
